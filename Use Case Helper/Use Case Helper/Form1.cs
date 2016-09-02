@@ -16,5 +16,25 @@ namespace Use_Case_Helper
         {
             InitializeComponent();
         }
+
+        private UseCase usecase = null;
+
+        private void PicBoxDraw_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            if (usecase != null)
+            {
+                usecase.Draw(g);
+            }
+        }
+
+        private void PicBoxDraw_MouseDown(object sender, MouseEventArgs e)
+        {
+            usecase = new UseCase(e.Location, new Size (200, 100), "Naampje Usecase");
+
+            Refresh();
+        }
     }
 }
