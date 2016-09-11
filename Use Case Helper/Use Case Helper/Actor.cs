@@ -9,20 +9,20 @@ namespace Use_Case_Helper
     class Actor
     {
         public string naam;
-        public Size size;
         public Point location;
+        public Image image;
 
-        public Actor(string naam, Size size, Point location)
+        public Actor(string naam, Point location, Image image)
         {
             this.naam = naam;
-            this.size = size;
-            this.location = new Point(location.X - (size.Width / 2), location.Y - (size.Height / 2));
+            this.location = new Point(location.X, location.Y);
+            this.image = image;
         }
 
         public void Draw(Graphics g)
         {
-            g.DrawEllipse(Pens.Black, location.X, location.Y, size.Width, size.Height);
-            g.DrawString(naam, new Font(FontFamily.GenericMonospace, 11), Brushes.Black, location.X, location.Y);
+            g.DrawImage(image, location.X, location.Y);
+            g.DrawString(naam, new Font(FontFamily.GenericMonospace, 11), Brushes.Black, location.X - 20, location.Y + 150);
         }
     }
 }
