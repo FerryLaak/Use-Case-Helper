@@ -9,15 +9,18 @@ namespace Use_Case_Helper
 {
     class Lines
     {
+        //Fields
         Point start;
         Point end;
 
+        //Contructor
         public Lines(Point start, Point end)
         {
             this.start = start;
             this.end = end;
         }
 
+        //Methods
         public void Draw(Graphics g)
         {
             Pen pen = new Pen(Color.Black);

@@ -26,7 +26,7 @@ namespace Use_Case_Helper
         public void Draw(Graphics g)
         {
             g.DrawEllipse(Pens.Black, location.X, location.Y, size.Width, size.Height);
-            g.DrawString(naam, new Font(FontFamily.GenericMonospace, 11), Brushes.Black, location.X, location.Y);
+            g.DrawString(naam, new Font(FontFamily.GenericMonospace, 11), Brushes.Black, location.X + 20 , location.Y + 20);
         }
 
     }

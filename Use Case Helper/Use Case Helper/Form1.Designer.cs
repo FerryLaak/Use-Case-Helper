@@ -37,7 +37,11 @@
             this.txtbActor = new System.Windows.Forms.TextBox();
             this.lblNaamActor = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnRemoveActor = new System.Windows.Forms.Button();
+            this.btnRemoveUseCase = new System.Windows.Forms.Button();
+            this.btnRemoveLine = new System.Windows.Forms.Button();
+            this.lblUseCaseInhoud = new System.Windows.Forms.Label();
+            this.txtbUseCaseInhoud = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.PicBoxDraw)).BeginInit();
             this.gbDraw.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -101,13 +105,15 @@
             this.rdbtnUseCase.TabStop = true;
             this.rdbtnUseCase.Text = "Use Case";
             this.rdbtnUseCase.UseVisualStyleBackColor = true;
+            this.rdbtnUseCase.CheckedChanged += new System.EventHandler(this.rdbtnUseCase_CheckedChanged);
             // 
             // txtbActor
             // 
-            this.txtbActor.Location = new System.Drawing.Point(312, 60);
+            this.txtbActor.Location = new System.Drawing.Point(346, 59);
             this.txtbActor.Name = "txtbActor";
-            this.txtbActor.Size = new System.Drawing.Size(225, 22);
+            this.txtbActor.Size = new System.Drawing.Size(153, 22);
             this.txtbActor.TabIndex = 3;
+            this.txtbActor.Visible = false;
             // 
             // lblNaamActor
             // 
@@ -117,32 +123,75 @@
             this.lblNaamActor.Size = new System.Drawing.Size(86, 17);
             this.lblNaamActor.TabIndex = 4;
             this.lblNaamActor.Text = "Naam Actor:";
+            this.lblNaamActor.Visible = false;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(223, 33);
+            this.pictureBox1.Location = new System.Drawing.Point(1044, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(27, 22);
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
             // 
-            // button1
+            // btnRemoveActor
             // 
-            this.button1.Location = new System.Drawing.Point(1064, 56);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnRemoveActor.Location = new System.Drawing.Point(1090, 12);
+            this.btnRemoveActor.Name = "btnRemoveActor";
+            this.btnRemoveActor.Size = new System.Drawing.Size(158, 23);
+            this.btnRemoveActor.TabIndex = 6;
+            this.btnRemoveActor.Text = "Remove Actor";
+            this.btnRemoveActor.UseVisualStyleBackColor = true;
+            this.btnRemoveActor.Click += new System.EventHandler(this.btnRemoveActor_Click);
+            // 
+            // btnRemoveUseCase
+            // 
+            this.btnRemoveUseCase.Location = new System.Drawing.Point(1090, 41);
+            this.btnRemoveUseCase.Name = "btnRemoveUseCase";
+            this.btnRemoveUseCase.Size = new System.Drawing.Size(158, 23);
+            this.btnRemoveUseCase.TabIndex = 7;
+            this.btnRemoveUseCase.Text = "Remove Use Case";
+            this.btnRemoveUseCase.UseVisualStyleBackColor = true;
+            this.btnRemoveUseCase.Click += new System.EventHandler(this.btnRemoveUseCase_Click);
+            // 
+            // btnRemoveLine
+            // 
+            this.btnRemoveLine.Location = new System.Drawing.Point(1090, 70);
+            this.btnRemoveLine.Name = "btnRemoveLine";
+            this.btnRemoveLine.Size = new System.Drawing.Size(158, 23);
+            this.btnRemoveLine.TabIndex = 8;
+            this.btnRemoveLine.Text = "Remove Line";
+            this.btnRemoveLine.UseVisualStyleBackColor = true;
+            this.btnRemoveLine.Click += new System.EventHandler(this.btnRemoveLine_Click);
+            // 
+            // lblUseCaseInhoud
+            // 
+            this.lblUseCaseInhoud.AutoSize = true;
+            this.lblUseCaseInhoud.Location = new System.Drawing.Point(220, 34);
+            this.lblUseCaseInhoud.Name = "lblUseCaseInhoud";
+            this.lblUseCaseInhoud.Size = new System.Drawing.Size(120, 17);
+            this.lblUseCaseInhoud.TabIndex = 10;
+            this.lblUseCaseInhoud.Text = "Use Case inhoud:";
+            // 
+            // txtbUseCaseInhoud
+            // 
+            this.txtbUseCaseInhoud.Location = new System.Drawing.Point(346, 15);
+            this.txtbUseCaseInhoud.Multiline = true;
+            this.txtbUseCaseInhoud.Name = "txtbUseCaseInhoud";
+            this.txtbUseCaseInhoud.Size = new System.Drawing.Size(153, 66);
+            this.txtbUseCaseInhoud.TabIndex = 9;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 768);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.lblUseCaseInhoud);
+            this.Controls.Add(this.txtbUseCaseInhoud);
+            this.Controls.Add(this.btnRemoveLine);
+            this.Controls.Add(this.btnRemoveUseCase);
+            this.Controls.Add(this.btnRemoveActor);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblNaamActor);
             this.Controls.Add(this.txtbActor);
@@ -169,7 +218,11 @@
         private System.Windows.Forms.TextBox txtbActor;
         private System.Windows.Forms.Label lblNaamActor;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnRemoveActor;
+        private System.Windows.Forms.Button btnRemoveUseCase;
+        private System.Windows.Forms.Button btnRemoveLine;
+        private System.Windows.Forms.Label lblUseCaseInhoud;
+        private System.Windows.Forms.TextBox txtbUseCaseInhoud;
     }
 }
 

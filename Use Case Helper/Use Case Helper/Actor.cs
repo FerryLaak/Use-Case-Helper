@@ -8,10 +8,12 @@ namespace Use_Case_Helper
 {
     class Actor
     {
+        //Fields
         public string naam;
         public Point location;
         public Image image;
 
+        //Contructor
         public Actor(string naam, Point location, Image image)
         {
             this.naam = naam;
@@ -19,6 +21,7 @@ namespace Use_Case_Helper
             this.image = image;
         }
 
+        //Methods
         public void Draw(Graphics g)
         {
             g.DrawImage(image, location.X, location.Y);

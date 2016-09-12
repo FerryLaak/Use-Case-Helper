@@ -17,16 +17,18 @@ namespace Use_Case_Helper
         public Form1()
         {
             InitializeComponent();
-            txtbActor.Visible = false;
-            lblNaamActor.Visible = false;
-            pictureBox1.Visible = false;
         }
+
+        //Fields
+        #region
         private List<UseCase> usecases = new List<UseCase>();
         private List<Actor> actors = new List<Actor>();
         private List<Lines> lines = new List<Lines>();
         Point end;
         Point start;
+        #endregion
 
+        //Draws all the items in the lists.
         private void PicBoxDraw_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -45,13 +47,16 @@ namespace Use_Case_Helper
                 }
             
         }
+
+
+        //Adds the items to the list and calculates the start point for the line.
         private void PicBoxDraw_MouseDown(object sender, MouseEventArgs e)
         {
             Image actor = pictureBox1.Image;
 
             if (rdbtnUseCase.Checked == true)
             {
-                usecases.Add(new UseCase("Naam usecase", new Size(200, 100), e.Location));
+                usecases.Add(new UseCase(txtbUseCaseInhoud.Text, new Size(200, 100), e.Location));
             }
             if (rdbtnActor.Checked == true && actors.Count < 3)
             {
@@ -65,6 +70,20 @@ namespace Use_Case_Helper
             Refresh();          
         }
 
+       
+        //Calculates the point where the mouse is up for the end of the line, adds the line to the list and draws it.
+        private void PicBoxDraw_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (rdbtnLine.Checked == true)
+            {
+                end = new Point(e.X, e.Y);
+                lines.Add(new Lines(start, end));
+            }
+            Refresh();
+        }
+
+        
+        //Makes the textbox and label visible when necessary.
         private void rdbtnActor_CheckedChanged(object sender, EventArgs e)
         {
             if (rdbtnActor.Checked == true)
@@ -77,28 +96,50 @@ namespace Use_Case_Helper
                 txtbActor.Visible = false;
                 lblNaamActor.Visible = false;
             }
-
-
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void rdbtnUseCase_CheckedChanged(object sender, EventArgs e)
         {
-
-        }
-
-
-
-
-
-
-        private void PicBoxDraw_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (rdbtnLine.Checked == true)
+            if (rdbtnUseCase.Checked == true)
             {
-                end = new Point(e.X, e.Y);
-                lines.Add(new Lines(start, end));
+                txtbUseCaseInhoud.Visible = true;
+                lblUseCaseInhoud.Visible = true;
             }
-            Refresh();
+            else if (rdbtnUseCase.Checked == false)
+            {
+                txtbUseCaseInhoud.Visible = false;
+                lblUseCaseInhoud.Visible = false;
+            }
         }
+
+
+        //Remove the las item in the list.
+        private void btnRemoveActor_Click(object sender, EventArgs e)
+        {
+            if (actors.Count >= 1)
+            {
+                actors.RemoveAt(actors.Count - 1);
+            }
+            PicBoxDraw.Refresh();
+        }
+
+        private void btnRemoveUseCase_Click(object sender, EventArgs e)
+        {
+            if (usecases.Count >= 1)
+            {
+                usecases.RemoveAt(usecases.Count - 1);
+            }
+            PicBoxDraw.Refresh();
+        }
+
+        private void btnRemoveLine_Click(object sender, EventArgs e)
+        {
+            if (lines.Count >= 1)
+            {
+                lines.RemoveAt(lines.Count - 1);
+            }
+            PicBoxDraw.Refresh();
+        }
+
+
     }
 }
